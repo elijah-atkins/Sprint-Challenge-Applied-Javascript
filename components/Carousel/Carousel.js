@@ -27,6 +27,9 @@ function createCarousel(){
   const turntable = document.createElement('img')
   const rightButton = document.createElement('div')
 
+  let index = 0;
+
+  imgArr = [mountains, computer, tree, turntable]
   mountains.src = "./assets/carousel/mountains.jpeg"
   computer.src = "./assets/carousel/computer.jpeg"
   tree.src = "./assets/carousel/trees.jpeg"
@@ -35,7 +38,18 @@ function createCarousel(){
   carousel.classList.add('carousel');
   leftButton.classList.add('left-button');
   rightButton.classList.add('right-button');
+  mountains.classList.add('active-img')
 
+  leftButton.addEventListener('click', () => {
+    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+    index = index - 1;
+    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+  })
+  rightButton.addEventListener('click', () =>{
+    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+    index = index + 1;
+    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+  })
 
 
   carousel.append(leftButton, mountains, computer, tree, turntable, rightButton);
