@@ -35,17 +35,21 @@ function createCarousel(){
   tree.src = "./assets/carousel/trees.jpeg"
   turntable.src = "./assets/carousel/turntable.jpeg"
 
+  
   carousel.classList.add('carousel');
   leftButton.classList.add('left-button');
   rightButton.classList.add('right-button');
-  mountains.classList.add('active-img')
+  mountains.classList.add('image', 'active-img');
+  computer.classList.add('image')
+  tree.classList.add('image')
+  turntable.classList.add('image')
 
   const right = "\u2192";
   const left = "\u2190";
   leftButton.textContent = left;
   rightButton.textContent = right;
   const cycle = () =>{
-    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+    imgArr[Math.abs(index % imgArr.length)].classList.toggle('active-img')
   }
 
   leftButton.addEventListener('click', () => {
