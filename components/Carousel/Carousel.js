@@ -40,15 +40,29 @@ function createCarousel(){
   rightButton.classList.add('right-button');
   mountains.classList.add('active-img')
 
+  const right = "\u2192";
+  const left = "\u2190";
+  leftButton.textContent = left;
+  rightButton.textContent = right;
+  const cycle = () =>{
+    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+  }
+
   leftButton.addEventListener('click', () => {
-    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+    //turn off current image
+    cycle()
+    //update index number
     index = index - 1;
-    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+    //turn on current image
+    cycle()
   })
   rightButton.addEventListener('click', () =>{
-    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+    //turn off current image
+    cycle()
+    //update index number
     index = index + 1;
-    imgArr[Math.abs(index % 4)].classList.toggle('active-img')
+    //turn on new image
+    cycle()
   })
 
 
