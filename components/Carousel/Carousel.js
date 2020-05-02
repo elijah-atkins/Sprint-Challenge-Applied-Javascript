@@ -17,3 +17,62 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+function createCarousel(){
+  const carousel = document.createElement('div')
+  const leftButton = document.createElement('div')
+  const mountains = document.createElement('img')
+  const computer = document.createElement('img')
+  const tree = document.createElement('img')
+  const turntable = document.createElement('img')
+  const rightButton = document.createElement('div')
+
+  let index = 0;
+
+  imgArr = [mountains, computer, tree, turntable]
+  mountains.src = "./assets/carousel/mountains.jpeg"
+  computer.src = "./assets/carousel/computer.jpeg"
+  tree.src = "./assets/carousel/trees.jpeg"
+  turntable.src = "./assets/carousel/turntable.jpeg"
+
+  
+  carousel.classList.add('carousel');
+  leftButton.classList.add('left-button');
+  rightButton.classList.add('right-button');
+  mountains.classList.add('image', 'active-img');
+  computer.classList.add('image')
+  tree.classList.add('image')
+  turntable.classList.add('image')
+
+  const right = "\u2192";
+  const left = "\u2190";
+  leftButton.textContent = left;
+  rightButton.textContent = right;
+  const cycle = () =>{
+    imgArr[Math.abs(index % imgArr.length)].classList.toggle('active-img')
+  }
+
+  leftButton.addEventListener('click', () => {
+    //turn off current image
+    cycle()
+    //update index number
+    index = index - 1;
+    //turn on current image
+    cycle()
+  })
+  rightButton.addEventListener('click', () =>{
+    //turn off current image
+    cycle()
+    //update index number
+    index = index + 1;
+    //turn on new image
+    cycle()
+  })
+
+
+  carousel.append(leftButton, mountains, computer, tree, turntable, rightButton);
+
+  return carousel
+}
+const carouselContainer = document.querySelector('.carousel-container');
+carouselContainer.append(createCarousel())
